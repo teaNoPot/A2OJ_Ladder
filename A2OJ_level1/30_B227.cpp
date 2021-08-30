@@ -39,7 +39,7 @@ int main() {
         cin >> b[i];
     }
 
-    // O(n*m)
+    // Time complexity O(n+m), Space complexity O(n) 
     pair<uint64_t, uint64_t> res = compare(n,a,m,b);
 
 
