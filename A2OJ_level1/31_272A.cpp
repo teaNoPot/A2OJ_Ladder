@@ -17,14 +17,15 @@ int main() {
         cin >> finger;
         sum+=finger;
     }
-    
-    int solution;
+
+    vector<int> solutions;
     for (int i=1; i<6; i++) {
         if((sum+i)%(n+1) == 0)  {
-            solution = i;
-            break;
+            solutions.push_back(i);
         }
     }
+
+    cout << solutions.size() << endl;
 
     return 0;
 }
