@@ -20,9 +20,8 @@ int main() {
 
     vector<int> solutions;
     for (int i=1; i<6; i++) {
-        if((sum+i)%(n+1) == 0)  {
+        if((i+sum)%(n+1) != 1)
             solutions.push_back(i);
-        }
     }
 
     cout << solutions.size() << endl;
