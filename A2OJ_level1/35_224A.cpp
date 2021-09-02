@@ -8,15 +8,14 @@ int main() {
 
     vector<int> e(3);
     cin >> e[0] >> e[1] >> e[2];
-
+    
     int a,b,c;
-
+    
     a = round(sqrt((e[0]*e[2])/e[1]));
     b = round(sqrt((e[0]*e[1])/e[2]));
     c = round(sqrt((e[1]*e[2])/e[0]));
-
-    cout << a*4+b*4+c*4 << endl;
-
-
+    
+    cout << (a+b+c)*4 << endl;
+    
     return 0;
 }
