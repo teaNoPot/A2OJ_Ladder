@@ -9,45 +9,43 @@ using namespace std;
 int main()
 {
 
+    vector<int>a[100001];
     int n;
-    map<int,vector<int>> mp;
-    cin >> n;
-    for(int i=0;i<n;++i)
+    cin>>n;
+    for(int i=0;i<n;i++)
     {
         int x;
-        cin >> x;
-        mp[x].push_back(i);
+        cin>>x;
+        a[x].push_back(i);
     }
-
-    // pos
-    int pix[10000];
-
-    for(auto [k,v]: mp) {
-        int px=0;
-        if(v.size()>1){
-            px = v[1] - v[0];
-            bool isv = true;
-            for(int i=1; i<v.size()-1; ++i)
+    vector<pair<int,int>>ans;
+    for(int i=0;i<100001;i++)
+    {
+        if(a[i].size()==0) continue;
+        else if(a[i].size()==1) ans.push_back({i,0});
+        else
+        {
+            int d=a[i][1]-a[i][0];
+            bool flag=true;
+            for(int j=1;j<a[i].size();j++)
             {
-                if((v[i+1]-v[i]) != px)
+                if(a[i][j]-a[i][j-1]!=d)
                 {
-                    isv = false;
-                    mp.erase(k);
-                    break;
+                flag=false;
+                break;
                 }
             }
-            if (isv)
+            if(flag)
             {
-                pix[k]=px;
+            ans.push_back({i,d});
             }
         }
     }
-
-    cout << mp.size() << endl;
-    for(auto [k,v]:mp)
+    cout<<ans.size()<<"\n";
+    for(int i=0;i<ans.size();i++)
     {
-        cout << k << " " << pix[k] << endl;
-    }
+        cout<<ans[i].first<<" "<<ans[i].second<<"\n";
+    }    
 
     return 0;
 }
