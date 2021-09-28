@@ -6,17 +6,27 @@ using namespace std;
 
 int main()
 {
-    int sum1=0, sum2=0;
-    int n,w;
+    int n,a=0,b=0,w;
     cin >> n;
     for(int i=0; i<n; ++i)
     {
         cin >> w;
-        if(sum1<sum2) sum1+=w;
-        else sum2 += w;
+        if(w==200) a++;
+        else b++;
     }
-
-    if(sum1==sum2) cout << "YES" << endl;
-    else cout << "NO" << endl;
+    int sum = 200*a+100*b;
+    if(sum%200!=0) cout << "NO" << endl;
+    else{
+        int half = sum/2;
+        bool ans = false;
+        for(int i=0; i<=a; ++i) {
+            if(200*i<=half && half-200*i<=100*b)
+            {
+                ans=true;
+            }
+        }
+        if(ans) cout << "YES" << endl;
+        else cout << "NO" << endl;
+    }
     return 0;
 }
