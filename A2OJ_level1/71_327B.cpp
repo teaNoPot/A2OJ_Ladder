@@ -3,31 +3,30 @@
 
 using namespace std;
 
-int next_number(vector<int> a) {
-    int k = a[a.size()-1]+1;
-    while(k<10000000) {
-        bool is = true;
-        for(int i=0;i<a.size();++i){
-            if(k%a[i]==0) is = false;
+void gen_primes(int n, vector<int> &a) {
+    int M = n*14;
+    vector<bool> A(M,true);
+    for(int i=2;i*i<M;++i) {
+        if(A[i]==true) {
+            for(int j=i*i;j<M;j+=i) A[j] = false;
         }
-        if(is) break;
-        else k++;
     }
-    
-    return k;
+
+    for(int i=2;i<M;++i) {
+        if(A[i]==true) a.push_back(i);
+    }
 }
 
 int main()
 {
     int n;
-    vector<int> a(1,2);
+    vector<int> a;
+
     cin >> n;
-    while(a.size()<n){
-        a.push_back(next_number(a));
-    }
-    
-    for(int i=0;i<n;++i) 
+    gen_primes(n,a);
+    //OUTPUT
+    for(int i=0;i<n;++i)
         cout << a[i] << " ";
-    
+
     return 0;
 }
